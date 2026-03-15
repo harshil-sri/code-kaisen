@@ -16,10 +16,14 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-    console.log(`🟢 User connected: ${socket.id}`);
-    socket.on('client_ping', () => {
-        console.log("⚡ INCOMING PING FROM FRONTEND!");
-        io.emit('server_pong', "PONG! 🏓");
+    socket.on('join_domain', (roomName) => {
+        socket.join(roomName);
+        console.log(`User ${socket.id} entered domain: ${roomName}`);
+    });
+    socket.on('client_attack', (roomName) => {
+        console.log(`💥 Attack fired in domain: ${roomName}`);
+        
+        io.to(roomName).emit('server_damage', "Attack landed! HP -10"); 
     });
 });
 const PORT = 3001;
