@@ -33,7 +33,6 @@ Standard competitive programming, but make it cursed.
 
 ## The Architecture
 
-Three layers. One arena.
 
 | Layer | Tech | Role |
 |-------|------|------|
